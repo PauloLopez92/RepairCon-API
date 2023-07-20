@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status de Serviço</title>
+    <style>
+        /* Mobile Styles */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #F3F3F3;
+            margin: 0;
+            padding: 0;
+        }
+          body {
+			background-image: url('/steam_neon_background.png');
+			background-repeat: no-repeat;
+			background-size: auto 100%;
+			margin: 0;
+			padding: 0;
+		  }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .service-card {
+            background-color: #1E90FF;
+            color: #FFFFFF;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .service-card h2 {
+            margin-top: 0;
+        }
+        .service-card p {
+			margin: 5px 0;
+        }
+        .service-card strong {
+            font-weight: bold;
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .service-card {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-gap: 20px;
+                padding: 30px;
+            }
+            .service-card p {
+                margin: 0;
+            }
+            .service-card p:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        body {
+			background-image: url('/steam_neon_background.png');
+			background-size: auto 100%;
+
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #111111;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .service-card {
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .service-card h2 {
+            margin-top: 0;
+        }
+        .service-card p {
+            margin: 5px 0;
+        }
+        .service-card strong {
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .service-card {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-gap: 20px;
+                padding: 30px;
+            }
+            .service-card p {
+                margin: 0;
+            }
+            .service-card p:last-of-type {
+                margin-bottom: 0;
+            }
+        }/*
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #111111;
+			background-image: url('/steam_neon_background.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100vh; 
+			width: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .service-card {
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .service-card h2 {
+            margin-top: 0;
+        }
+        .service-card p {
+            margin: 5px 0;
+        }
+        .service-card strong {
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .service-card {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-gap: 20px;
+                padding: 30px;
+            }
+            .service-card p {
+                margin: 0;
+            }
+            .service-card p:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="service-card">
+            <h2>Serviço</h2>
+            <p><strong>ID:</strong> <span id="service-id"></span></p>
+            <p><strong>Modelo:</strong> <span id="service-model"></span></p>
+            <p><strong>Descrição:</strong> <span id="service-description"></span></p>
+            <p><strong>Custo de Peça:</strong> <span id="service-partcost"></span></p>
+            <p><strong>Mão de obra:</strong> <span id="service-labortax"></span></p>
+            <p><strong>Preço:</strong> <span id="service-finalprice"></span></p>
+            <p><strong>Status:</strong> <span id="service-status"></span></p>
+            <p><strong>Cliente:</strong> <span id="service-customer"></span></p>
+            <p><strong>Técnico:</strong> <span id="service-tech"></span></p>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var serviceId =/*[[${id}]]*/ 'defaultanyvalue';
+        console.log(serviceId);
+        fetch(`/api/services/${serviceId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('service-id').textContent = data.id;
+            document.getElementById('service-model').textContent = data.model;
+            document.getElementById('service-description').textContent = data.description;
+            document.getElementById('service-partcost').textContent = data.partCost;
+            document.getElementById('service-labortax').textContent = data.laborTax;
+            document.getElementById('service-finalprice').textContent = data.finalPrice;
+            document.getElementById('service-status').textContent = data.status;
+            document.getElementById('service-customer').textContent = data.customer.name;
+            document.getElementById('service-tech').textContent = data.tech.name;
+        })
+        .catch(error => console.error(error));
+    </script>
+</body>
+</html>

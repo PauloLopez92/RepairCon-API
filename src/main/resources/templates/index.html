@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>RepairConnect</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/utils.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script type="module" th:src="@{/js/calendar.js}"></script>
+  <script type="module" th:src="@{/js/service.js}"></script>
+
+</head>
+
+<body>
+  <header>
+    <div class="app-title">Repair<span>Connect</span></div>
+  </header>
+
+  <section class="r-sec">
+	<article id="service-card" class="card-sec">
+      <h2>Serviço</h2>
+      <ul>
+        <li>
+          Modelo: <span id="service-model">Lorem ipsum</span>
+        </li>
+        <li>
+          TAG: <span id="service-tag">XOKAMDSAM</span>
+        </li>
+        <li>
+          Descrição: <span id="service-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam dolores officia doloribus. Deserunt, dolore a? Saepe officiis laudantium quam voluptas cum veritatis aliquam architecto harum in nobis? Repudiandae, accusamus accusantium.</span>
+        </li>
+        <li>
+          Custo de peça: <span id="service-partcost">R$ 00,00</span>
+        </li>
+        <li>
+          Mão de obra: <span id="service-labortax">R$ 00,00</span>
+        </li>
+        <li>
+          Desconto: <span id="service-discount">0%</span>
+        </li>
+        <li>
+          Valor pago: <span id="service-price">R$ 00,00</span>
+        </li>
+        <li>
+          Preço final: <span id="service-finalprice">R$ 00,00</span>
+        </li>
+        <li>
+          Forma de pagamento: <span id="service-method">Pix</span>
+        </li>
+        <li>
+          Cliente: <span id="service-client">Lorem ipsum</span>
+        </li>
+        <li>
+          Técnico: <span id="service-tech">Lorem ipsum</span>
+        </li>
+      </ul>
+    </article>
+
+	<article id="status-card" class="card-sec">
+      <h2>Status do serviço</h2>
+      <ul>
+        <li id="service-status">
+
+        <div style="display:none;">
+                <img th:src="@{/images/icons/money.png}">
+                <h3>orçamento</h3>
+                <h5>orçamento gerado</h5>
+		</div>
+
+        <div style="display:none;">
+                <img th:src="@{/images/icons/authorized.png}">
+                <h3>autorizado</h3>
+                <h5>orçamento aprovado pelo cliente, aguardando para ser consertado</h5>
+		</div>
+
+        <div style="display:none;">
+                <img th:src="@{/images/icons/error.png}">
+                <h3>sem conserto</h3>
+                <h5>infelizmente não foi possível consertar o seu aparelhok, por favor retirar na loja</h5>
+		</div>
+        <div style="display:none;">
+                <img th:src="@{/images/icons/pc-tower.png}">
+                <h3>bancada</h3>
+                <h5>em conserto</h5>
+		</div>
+        <div style="display:none;">
+                <img th:src="@{/images/icons/checked.png}">
+                <h3>finalizado</h3>
+                <h5>aparelho consertado, por favor retirar na loja</h5>
+		</div>
+        </li>
+      </ul>
+    </article>
+
+    <div id="calendar-card" class="container-calendar">
+      <div class="calendar">
+        <h5>Previsão de retirada</h5>
+        <div class="front">
+          <div class="current-date">
+            <h1></h1>
+            <h2></h2>
+          </div>
+
+          <div class="current-month">
+            <ul class="week-days">
+              <li>Seg</li>
+              <li>Ter</li>
+              <li>Qua</li>
+              <li>Qui</li>
+              <li>Sex</li>
+              <li>Sab</li>
+              <li>Dom</li>
+            </ul>
+
+            <div class="weeks">
+              <div class="first">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="second">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="third">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="fourth">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="fifth">
+                <span></span>
+                <span></span>
+                <span></span>
+                <!--<span class="event"></span>-->
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div repairclass="sixth">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <article id="img-card" class="card-sec">
+      <h2 id="carousel-count">Imagens 1/2</h2>
+      <div class="carousel-container">
+        <i id="img-l" class="fa fa-arrow-left" aria-hidden="true"></i>
+        <div class="carousel-container-img">
+          <!--<img src="images/services/OIP.jpeg">-->
+        </div>
+        <i id="img-r" class="fa fa-arrow-right" aria-hidden="true"></i>
+      </div>
+    </article>
+
+    <div id="full-img-overlay" style="display: none;">
+      <div id="full-img">
+        <!--<img src="images/services/OIP.jpeg">-->
+      </div>
+    </div>
+
+  </section>
+	<h11 id="serviceId" th:text="${id}">Default Heading Text</h11>
+  
+</body>
+
+</html>

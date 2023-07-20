@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Details</title>
+    <style>
+        /* CSS styles */
+        body {
+            background-color: #eaf4ff;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #214f80;
+            margin-bottom: 30px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #214f80;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Service</h1>
+    <table>
+        <tbody id="service"></tbody>
+    </table>
+    <script th:inline="javascript">
+        var serviceId =/*[[${id}]]*/ 'defaultanyvalue';
+        console.log(serviceId);
+        fetch(`/api/services/${serviceId}`)
+        .then(response => response.json())
+        .then(data => {
+            const serviceTable = document.getElementById('service');
+            serviceTable.innerHTML = `
+                <tr><th>ID</th><td>${data.id}</td></tr>
+                <tr><th>Model</th><td>${data.model}</td></tr>
+                <tr><th>Description</th><td>${data.description}</td></tr>
+                <tr><th>Part Cost</th><td>${data.partCost}</td></tr>
+                <tr><th>Labor Tax</th><td>${data.laborTax}</td></tr>
+                <tr><th>Final Price</th><td>${data.finalPrice}</td></tr>
+                <tr><th>Status</th><td>${data.status}</td></tr>
+                <tr><th>Customer</th><td>${data.customer.name}</td></tr>
+                <tr><th>Technician</th><td>${data.tech.name}</td></tr>
+            `;
+        })
+        .catch(error => console.error(error));
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-br">
+<meta charset="utf-8">
+<title>Status de serviço</title>
+    <style>
+		html, body {
+			height: 50%;
+			width: 100%;
+			zoom:120%;
+		}
+		/* Mobile Styles */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+			background-color: rgb(77, 76, 73);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+			position: fixed;
+			padding: 0;
+			margin: 0;
+			top: 0;
+			left: 0;
+			width: 100%;
+
+        }
+        @media (min-width: 768px) {
+		.container {
+			padding: 20px;
+		}
+		.service-card {
+			display: grid;
+			/*grid-template-columns: 1fr 2fr;*/
+			grid-gap: 20px;
+			padding: 30px;
+		}
+		.service-card p {
+			margin: 0;
+		}
+		.service-card p:last-of-type {
+			margin-bottom: 0;
+		}
+        }
+		.back-image{
+			background-image: url('steam_neon_background.png');
+			filter: blur(5px);
+		}
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .service-card {
+            background-color: #1E90FF;
+            color: #FFFFFF;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .service-card h2 {
+            margin-top: 0;
+        }
+        .service-card p {
+			margin: 5px 0;
+        }
+        .service-card strong {
+            font-weight: bold;
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .service-card {
+                display: grid;
+                /*grid-template-columns: 1fr 2fr;*/
+                grid-gap: 20px;
+                padding: 30px;
+            }
+            .service-card p {
+                margin: 0;
+            }
+            .service-card p:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        body {
+			background-image: url('/steam_neon_background.png');
+			background-size: auto 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #111111;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+		.back-image{
+			background-image: url('steam_neon_background.png');
+			filter: blur(50px);
+		}
+        .service-card {
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            list-style-type: disc;
+        }
+        .service-card h2 {
+            margin-top: 0;
+        }
+        .service-card p {
+            margin: 5px 0;
+        }
+        .service-card strong {
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .service-card {
+                display: grid;
+                font-size:14pt;
+                /*grid-template-columns: 1fr 2fr;*/
+                grid-gap: 20px;
+                padding: 30px;
+            }
+            .service-card p {
+                margin: 0;
+            }
+            .service-card p:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+         
+		/*
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('steam_neon_background.png');
+			background-size: cover;
+			background-position: center;
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 25px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+		.wrapper{
+			height: 100%;
+			display: flex;
+		}
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-card {
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            margin: 16px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        #service-status {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="service-card">
+            <h2>Serviço</h2>
+            <!-- 
+            <p><strong>ID:</strong> <span id="service-id"></span></p>
+			-->
+            <p><strong>Modelo:</strong> <span id="service-model"></span></p>
+            <p><strong>Descrição:</strong> <span id="service-description"></span></p>
+            <p><strong>Custo de Peça:</strong> <span id="service-partcost"></span></p>
+            <p><strong>Mão de obra:</strong> <span id="service-labortax"></span></p>
+            <p><strong>Desconto:</strong> <span id="service-discount"></span></p>
+            <p><strong>Preço:</strong> <span id="service-finalprice"></span></p>
+            <p><strong>Cliente:</strong> <span id="service-customer"></span></p>
+            <p><strong>Técnico:</strong> <span id="service-tech"></span></p>
+        </div>
+
+        <div class="service-card">
+            <p><strong>Status:</strong> <span id="service-status"></span></p>
+        </div>
+    </div>
+
+	<script th:inline="javascript">
+		var serviceId =/*[[${id}]]*/ 'defaultanyvalue';
+		console.log(serviceId);
+		fetch(`/api/services/id/${serviceId}`)
+		.then(response => response.json())
+		.then(data => {
+			//document.getElementById('service-id').textContent = data.id;
+			document.getElementById('service-model').textContent = data.model;
+			document.getElementById('service-description').textContent = data.description;
+			document.getElementById('service-partcost').textContent = "R$ " + data.partCost.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+			document.getElementById('service-labortax').textContent = "R$ " + data.laborTax.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+			document.getElementById('service-discount').textContent = data.discount+"%";
+			document.getElementById('service-finalprice').textContent = "R$ " + data.finalPrice.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+			document.getElementById('service-customer').textContent = data.customer.name;
+			document.getElementById('service-tech').textContent = data.user.name;
+			//let statusString = new Array("Budget","Authorized","NoFix", "Bench","Finished");
+			//document.getElementById('service-status').textContent = statusString[data.status];
+			let statusString = new Array("Orçamento","Autorizado","Sem conserto", "Bancada","Finalizado");
+			let statusColors = new Array("#FFA500", "#008000", "#DC143C", "#87CEFA", "#7CFC00");
+			let status = data.status;
+			
+			document.getElementById('service-status').textContent = statusString[status];
+			document.getElementById('service-status').style.color = statusColors[status];
+			
+			let priceElements = document.querySelectorAll('.price');
+			priceElements.forEach(el => {
+				el.style.color = "#F08080";
+			});
+		})
+		.catch(error => console.error(error));
+	</script>
+</body>
+</html>

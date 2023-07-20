@@ -1,0 +1,6 @@
+#!/bin/bash
+# To compile
+mvn package spring-boot:repackage
+
+# To move
+cp target/demo-1.0.0.jar /home/edie/Downloads/api-0.9.10.jar
